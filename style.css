@@ -2,6 +2,20 @@
 *** GENERAL
 **********************************************/
 
+.final-score {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 520px;
+  font-family: Lato;
+  font-size: 18px;
+  text-transform: uppercase;
+  width: 160px;
+  text-align: center;
+  padding: 10px;
+  color: #555;
+}
+
 * {
   margin: 0;
   padding: 0;

@@ -10,7 +10,8 @@ GAME RULES:
 */
 
 var scores, roundScore, activePlayer, gamePlaying;
-var winningScore = 100;
+// var winningScore = 100;
+// var lastDice;
 
 initialize();
 
@@ -32,8 +33,14 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
     diceDom1.src = "dice-" + dice1 + ".png";
     diceDom2.src = "dice-" + dice2 + ".png";
 
+    // if statement for two 6's in a row
+    /*if (dice === 6 && lastDice === 6) {
+      scores[activePlayer] = 0
+      document.getElementById("score-" + activePlayer).textContent = 0;
+      nextPalyer();
+    } */
     //   3. update the roundScore IF the rolled number was not a 1
-    if (dice1 !== 1 && dice2 !== 1) {
+    /*else*/ if (dice1 !== 1 && dice2 !== 1) {
       //update the round score as appeared on the dice
       //   roundScore = roundScore + dice
       roundScore += dice1 + dice2;
@@ -45,6 +52,7 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
       // next player
       nextPalyer();
     }
+    //lastDice = dice
   }
 });
 
@@ -57,6 +65,18 @@ document.querySelector(".btn-hold").addEventListener("click", function() {
     // update the ui
     document.getElementById("score-" + activePlayer).textContent =
       scores[activePlayer];
+
+    //logic for jonas text input
+    var input = document.querySelector(".final-score").value;
+    var winningScore;
+
+    //undefined, 0, null and " " are coerced to false
+    //Anything else is coerced to true
+    if (input) {
+      winningScore = input;
+    } else {
+      winningScore = 100;
+    }
 
     //check if player won the game
     if (scores[activePlayer] >= winningScore) {
@@ -99,13 +119,14 @@ function nextPalyer() {
 //when clicking the NEWGAME button
 document.querySelector(".btn-new").addEventListener("click", initialize);
 
-var numInput = document.getElementById("gameNum");
+//my logic of number input
+/*var numInput = document.getElementById("gameNum");
 var winningScoreDisplay = document.querySelector(".playingTo p span");
 numInput.addEventListener("change", function() {
   winningScoreDisplay.textContent = numInput.value;
   winningScore = Number(numInput.value);
   initialize();
-});
+}); */
 
 //creating initialize function in global scope to apply DRY
 function initialize() {
